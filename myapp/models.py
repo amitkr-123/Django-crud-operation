@@ -4,6 +4,6 @@ from django.db import models
 class Student(models.Model):
     name = models.CharField(max_length=30)
     roll = models.CharField(max_length=10)
-    _class = models.CharField(max_length=20)
+    dept = models.CharField(max_length=20)
     def __str__(self):
         return self.name

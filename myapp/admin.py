@@ -3,5 +3,5 @@ from .models import Student
 
 # Register your models here.
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ("name" , "roll" , "_class")
+    list_display = ("name" , "roll" , "dept")
 admin.site.register(Student , StudentAdmin)
