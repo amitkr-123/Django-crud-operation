@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path ,include
 from myapp import views
 
 urlpatterns = [
@@ -8,5 +8,6 @@ urlpatterns = [
     path('add', views.add),
     path('remove/<int:id>', views.remove),
     path('edit/<int:id>' , views.edit),
-    path('update/<int:id>' , views.update)
+    path('update/<int:id>' , views.update),
+    path('auth/', include('authentication.urls'))
 ]
