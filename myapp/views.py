@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render ,redirect
 from django.http import HttpResponse
 from myapp.models import Student
+from django.contrib import messages
 
 def index(request):
     student = Student.objects.all()
@@ -12,11 +13,13 @@ def add(request):
         roll = request.POST['roll']
         dept = request.POST['dept']
         Student(name = name , roll = roll , dept = dept ).save()
-        return HttpResponse("Student Added Succesfully <a href = '/'> -> Go back <a/> ")
+        messages.success(request , "Student Added Successfully")
+        return redirect("home")
 
 def remove(request , id):
     Student.objects.get(id = id).delete()
-    return HttpResponse("Deleted Succesfully <a href = '/'> -> Go back <a/>")
+    messages.success(request , "Student Deleted Successfully")
+    return redirect('home')
 
 def edit(request , id):
     student = Student.objects.get(id=id)
@@ -30,4 +33,5 @@ def update(request , id):
     student.roll = request.POST.get('roll')
     student.dept = request.POST.get('dept')
     student.save()
-    return HttpResponse("Student Updated Succesfully <a href = '/'> -> Go back <a/> ")
+    messages.success(request , "Student Details Updated Successfully")
+    return redirect('home')

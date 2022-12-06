@@ -8,7 +8,9 @@
             <th scope="cool">Name</th>
             <th scope="cool">Roll</th>
             <th scope="cool">Dept</th>
+            {%if user.is_staff %}
             <th scope="cool">Action</th>
+            {%endif%} 
           </tr>
         </thead>
         <tbody>
@@ -18,12 +20,14 @@
             <td>{{student.name}}</td>
             <td>{{student.roll}}</td>
             <td>{{student.dept}}</td>
+            {%if user.is_staff%}
             <td><a href="/edit/{{student.id}}" class="btn btn-primary ml-3 p-2">Edit</a> <a href="/remove/{{student.id}}" class="btn btn-primary p-2">Remove</a></td>
+            {%endif%} 
           </tr>
         {%endfor%}
         </tbody>
       </table>
-      {%if user.is_superuser%}
+      {%if user.is_staff%}
       <form style="width: 50%; margin: 20px;" method="post" action="/add">
         <h1>Add Student</h1>
         {% csrf_token %}
